@@ -1,0 +1,41 @@
+<div ng-repeat="product in products" class="product" productID="{{product.productID}}">
+    <div class="product-wrapper">
+        <div class="product-img">
+            <img ng-src="./img/products/phones/{{product.productImage}}.png">
+        </div>
+        <h3 class="product-title">{{product.productName}}</h3>
+        <div class="product-info ta-left">
+            <div class="product-table">
+                <div class="product-row">
+                    <div class="product-cell">
+                        <span class="bold">Description</span>
+                    </div>
+                    <div class="product-cell">
+                        {{product.productDescrip}}
+                    </div>
+                </div>
+                <div class="product-row">
+                    <div class="product-cell">
+                        <span class="bold">Price</span>
+                    </div>
+                    <div class="product-cell">
+                        {{product.productPrice}}
+                    </div>
+                </div>
+                <div class="product-row">
+                    <div class="product-cell">
+                        <span class="bold">Units in Stock</span>
+                    </div>
+                    <div class="product-cell">
+                        {{product.productStock}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-delete">
+            <button ng-click="deleteProduct(product)" class="product-delete-btn" title="Delete product">
+                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>

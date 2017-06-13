@@ -1,0 +1,29 @@
+<div class="product-controls add-products">
+    <h2>Add a Product to the page</h2>
+    <form ng-submit="insertProduct(productInfo);" class="ta-left">
+        <div class="product-form-ctrl">
+            <label><span class="product-form-ctrl-label">Product Name</span>
+                <input type="text" class="product-form-ctrl-text-input" ng-model="productInfo.prodName"></label>
+        </div><!--
+        --><div class="product-form-ctrl">
+            <label><span class="product-form-ctrl-label">Product Description</span>
+                <input type="text" class="product-form-ctrl-text-input" ng-model="productInfo.prodDescrip"></label>
+        </div><!--
+        --><div class="product-form-ctrl">
+            <label><span class="product-form-ctrl-label">Product Price</span>
+                <input type="number" class="product-form-ctrl-text-input" ng-model="productInfo.prodPrice"></label>
+        </div><!--
+        --><div class="product-form-ctrl">
+            <label><span class="product-form-ctrl-label">Product Stock</span>
+                <input type="number" class="product-form-ctrl-text-input" ng-model="productInfo.prodStock"></label>
+        </div><!--
+        --><div class="product-form-ctrl">
+            <label><span class="product-form-ctrl-label">Product Image</span>
+                <input type="text" class="product-form-ctrl-text-input" ng-model="productInfo.prodImg"></label>
+        </div><!--
+        --><div class="product-form-ctrl ta-left">
+            <label><span class="product-form-ctrl-label mobile-hidden">&nbsp;</span></labe>
+            <button class="product-form-submit-btn" title="Add product">Add Product</button>
+        </div>
+    </form>
+</div>
