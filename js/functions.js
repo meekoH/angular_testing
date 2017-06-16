@@ -1,4 +1,4 @@
-// Let's define our AngularJS application. Why not?!
+// Let's define our AngularJS application.
 var productApp = angular.module("productApp", []);
 
 // Let's set up a controller for this app.
@@ -15,7 +15,7 @@ productApp.controller("productCtrl", function($scope, $http) {
         });
     }
 
-    // displayAddProductControls  
+    // displayAddProductControls opens the Add Product section and clears the fields contained within in.
     $scope.displayAddProductControls = function() {
         // Clear the input fields.
         angular.element(document.getElementsByClassName('product-form-ctrl-text-input')).val("");
@@ -29,7 +29,7 @@ productApp.controller("productCtrl", function($scope, $http) {
                 // Remove the button class.
                 $('.add-product-ctrl').addClass('section-active');
                 // Update the wording of the Add Product button.
-                $('.add-product-ctrl').html('Don\'t add this product <i class="fa fa-times-circle" aria-hidden="true"></i>');
+                $('.add-product-ctrl').html('Close <i class="fa fa-times-circle" aria-hidden="true"></i>');
             // Otherwise it has already been opened so remove the class and close it.
             } else {
                 // Remove the sectional class.
@@ -40,6 +40,18 @@ productApp.controller("productCtrl", function($scope, $http) {
                 $('.add-product-ctrl').html('Add a product <i class="fa fa-plus-circle" aria-hidden="true"></i>');
             }
         });
+    }
+
+    // Clear out the currentProduct variable.
+    $scope.currentProduct = {};
+
+    // displayEditProductControls opens the Edit Product section with the associated fields populated.
+    $scope.displayEditProductControls = function(prod) {
+        // Populate the currentProduct variable with information about the product.
+        $scope.currentProduct = prod;
+
+        // Slide toggle the edit-products-section for editing the chosen product.
+        $('.edit-products-section').slideDown();
     }
 
     // insertProduct creates a new (prod).
@@ -71,6 +83,27 @@ productApp.controller("productCtrl", function($scope, $http) {
             console.log("Failed at inserting product");
         });
     }
+    // editProduct updates the current (prod).
+    $scope.editProduct = function(prod) {
+        $http.post('./editProducts.php', {
+            "productID" : prod.productID,
+            "productName" : prod.productName,
+            "productDescrip" : prod.productDescrip,
+            "productPrice" : prod.productPrice,
+            "productStock" : prod.productStock,
+            "productImage" : prod.productImage
+        })
+        .success(function(data) {
+            if (data == true) {
+                console.log("Successfully update the product");
+                $('.edit-products-section').slideUp();
+            }
+        })
+        .error(function(data) {
+            // SHIT!
+            console.log("Failed at updating the product");
+        });
+    }
 
     // deleteProduct deletes the given (prod).
     $scope.deleteProduct = function(prod) {
@@ -81,7 +114,7 @@ productApp.controller("productCtrl", function($scope, $http) {
         // If we successfully delete the product, let's log it and refresh the product list.
         .success(function(data) {
             if (data == true) {
-                console.log("Successfully deleted product #");
+                console.log("Successfully deleted product prodID");
                 getProducts();
             }
         })

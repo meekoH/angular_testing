@@ -13,7 +13,7 @@
 
     		<div class="content-wrapper">
                 <div class="content">
-                    <!-- Here's me adding a comment -->
+
                     <div ng-app="productApp">
                         <div ng-controller="productCtrl" class="product-list ta-center">
                             <!-- Product Controls -->
@@ -23,13 +23,18 @@
                                 </div>
                             </div>
 
-                            <!-- Product altering section -->
+                            <!-- Product addition section -->
                             <div class="add-products-section">
                                 <div ng-include="'components/views/insertProducts.html'"></div>
                             </div>
 
                             <!-- List the Products -->
                             <product-list></product-list>
+
+                            <!-- Product editing section -->
+                            <div class="edit-products-section">
+                                <div ng-include="'components/views/editProducts.html'"></div>
+                            </div>
                         </div>
                     </div>
 

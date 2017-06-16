@@ -8,15 +8,14 @@
     // Escaping special characters from submitting data & store everything in new variables.
     $prodName = mysqli_real_escape_string($con, $data->prodName);
     $prodDescrip = mysqli_real_escape_string($con, $data->prodDescrip);
-    $prodPrice = $data->prodPrice;
-    $prodStock = $data->prodStock;
+    $prodPrice = mysqli_real_escape_string($con, $data->prodPrice);
+    $prodStock = mysqli_real_escape_string($con, $data->prodStock);
     $prodImg = mysqli_real_escape_string($con, $data->prodImg);
 
     // mysqli insert query
     $query = "INSERT INTO testProducts (productName,productDescrip,productPrice,productStock,productImage) VALUES ('$prodName','$prodDescrip','$prodPrice','$prodStock','$prodImg')";
 
     // Inserting data into database
-    // echo $query;
     mysqli_query($con, $query);
     echo true;
 ?>
